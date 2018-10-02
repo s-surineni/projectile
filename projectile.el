@@ -1691,6 +1691,7 @@ project-root for every file."
   "Present a project tailored PROMPT with CHOICES."
   (let ((prompt (projectile-prepend-project-name prompt))
         res)
+    (message "the value of prompt is %s" prompt)
     (setq res
           (cond
            ((eq projectile-completion-system 'ido)
@@ -1725,6 +1726,8 @@ https://github.com/abo-abo/swiper")))
     (if action
         (funcall action res)
       res)))
+
+;; (projectile-completing-read)
 
 (defun projectile-project-files (project-root)
   "Return a list of files for the PROJECT-ROOT."
