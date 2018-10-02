@@ -1689,9 +1689,12 @@ project-root for every file."
 
 (cl-defun projectile-completing-read (prompt choices &key initial-input action)
   "Present a project tailored PROMPT with CHOICES."
+  (message "the value of prompt is %s" prompt)
   (let ((prompt (projectile-prepend-project-name prompt))
         res)
-    (message "the value of prompt is %s" prompt)
+    (message "the value of prompt inside let is %s " prompt)
+    (message "the value of res inside let is %s " res)
+    (message "the projectile-completion-system is %s " projectile-completion-system)
     (setq res
           (cond
            ((eq projectile-completion-system 'ido)
@@ -1723,6 +1726,7 @@ https://github.com/emacs-helm/helm")))
               (user-error "Please install ivy from \
 https://github.com/abo-abo/swiper")))
            (t (funcall projectile-completion-system prompt choices))))
+    (message "the value of res after setq is %s " res)
     (if action
         (funcall action res)
       res)))
